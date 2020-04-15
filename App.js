@@ -12,7 +12,8 @@ import {
   StyleSheet,
   StatusBar,
   ActivityIndicator,
-  View
+  View,
+  Text
 } from 'react-native';
 import Button from './components/Button';
 import ButtonTypes from './model/ButtonTypes';
@@ -25,14 +26,32 @@ const App: () => React$Node = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <View style={styles.container}>
-          {/*{!!isLoading &&*/}
+          {!!isLoading &&
             <View style={styles.spinner}>
               <ActivityIndicator size="large" color="#0000ff"/>
             </View>
-          {/*}*/}
-          <Button buttonType={ButtonTypes.Power} setLoading={setLoading}/>
-          <Button buttonType={ButtonTypes.Power} setLoading={setLoading}/>
-          <Button buttonType={ButtonTypes.Power} setLoading={setLoading}/>
+          }
+          <View style={[styles.header, styles.row]}>
+            <Button buttonType={ButtonTypes.Power} setLoading={setLoading}/>
+          </View>
+          <View style={styles.row}>
+            <Button buttonType={ButtonTypes.Home} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Up} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Input} setLoading={setLoading}/>
+          </View>
+          <View style={styles.row}>
+            <Button buttonType={ButtonTypes.Left} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Select} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Right} setLoading={setLoading}/>
+          </View>
+          <View style={styles.row}>
+            <Button buttonType={ButtonTypes.VolumeUp} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Down} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.VolumeDown} setLoading={setLoading}/>
+          </View>
+          <View style={styles.row}>
+            <Button buttonType={ButtonTypes.Mute} setLoading={setLoading}/>
+          </View>
         </View>
       </SafeAreaView>
     </>
@@ -41,14 +60,25 @@ const App: () => React$Node = () => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center'
+    width: '100%',
+    height: '100%',
+    justifyContent: 'space-around'
+  },
+  header: {
+    paddingTop: 50,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   spinner: {
     position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
-    bottom: 0
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
