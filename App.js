@@ -28,7 +28,7 @@ const App: () => React$Node = () => {
         <View style={styles.container}>
           {!!isLoading &&
             <View style={styles.spinner}>
-              <ActivityIndicator size="large" color="#0000ff"/>
+              <ActivityIndicator size="large" color="white"/>
             </View>
           }
           <View style={[styles.header, styles.row]}>
@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'gray'
   }
 });
 
