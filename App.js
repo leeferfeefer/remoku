@@ -45,9 +45,9 @@ const App: () => React$Node = () => {
             <Button buttonType={ButtonTypes.Right} setLoading={setLoading}/>
           </View>
           <View style={styles.row}>
-            <Button buttonType={ButtonTypes.VolumeUp} setLoading={setLoading}/>
-            <Button buttonType={ButtonTypes.Down} setLoading={setLoading}/>
             <Button buttonType={ButtonTypes.VolumeDown} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Down} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.VolumeUp} setLoading={setLoading}/>
           </View>
           <View style={styles.row}>
             <Button buttonType={ButtonTypes.Mute} setLoading={setLoading}/>

@@ -11,7 +11,8 @@
     "flow": "flow",
     "flow-stop": "flow stop",
     "metro": "yarn stop-metro && watchman watch-del-all && react-native start --reset-cache",
-    "stop-metro": "lsof -ti tcp:8081 | xargs kill -9 || true"
+    "stop-metro": "lsof -ti tcp:8081 | xargs kill -9 || true",
+    "pods": "cd ios && pod install && cd .."
   },
   "dependencies": {
     "axios": "^0.19.2",

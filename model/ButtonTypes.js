@@ -73,7 +73,7 @@ const Home: ButtonFlowType = {
 const Input: ButtonFlowType = {
     name: 'INPUT',
     image: require('../assets/input.png'),
-    onPress: () => RemokuService.keyPress('InputTuner')
+    onPress: () => RemokuService.keyPress('InputHDMI1')
 };
 export default {
     Power,
