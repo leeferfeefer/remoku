@@ -75,6 +75,13 @@ const Input: ButtonFlowType = {
     image: require('../assets/input.png'),
     onPress: () => RemokuService.keyPress('InputHDMI1')
 };
+
+const Back: ButtonFlowType = {
+    name: 'BACK',
+    image: require('../assets/left.png'),
+    onPress: () => RemokuService.keyPress('Back')
+};
+
 export default {
     Power,
     Left,
@@ -86,5 +93,6 @@ export default {
     VolumeDown,
     Mute,
     Home,
-    Input
+    Input,
+    Back
 };

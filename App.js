@@ -32,6 +32,7 @@ const App: () => React$Node = () => {
             </View>
           }
           <View style={[styles.header, styles.row]}>
+            <Button buttonType={ButtonTypes.Back} setLoading={setLoading}/>
             <Button buttonType={ButtonTypes.Power} setLoading={setLoading}/>
           </View>
           <View style={styles.row}>
