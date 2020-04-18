@@ -88,6 +88,12 @@ const SearchRoku: ButtonFlowType = {
     onPress: RemokuService.search
 };
 
+const Options: ButtonFlowType = {
+    name: 'OPTIONS',
+    image: require('../assets/options.png'),
+    onPress: () => RemokuService.keyPress('Info')
+};
+
 export default {
     Power,
     Left,
@@ -101,5 +107,6 @@ export default {
     Home,
     Input,
     Back,
-    SearchRoku
+    SearchRoku,
+    Options
 };

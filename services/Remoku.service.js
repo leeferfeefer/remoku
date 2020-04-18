@@ -43,7 +43,6 @@ const togglePower = async () => {
 
 const keyPress = async (key) => {
     try {
-        console.log("baseURL", baseURL);
         const response = await instance.post(`${baseURL}/keypress/${key}`);
     } catch(error) {
         console.log(`Error sending keypress: ${error.message}`);

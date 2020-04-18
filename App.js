@@ -38,9 +38,12 @@ const App: () => React$Node = () => {
           </View>
 
           <View style={[styles.header, styles.row]}>
+            <Button buttonType={ButtonTypes.Power} setLoading={setLoading} setRokuFound={setRokuFound}/>
+          </View>
+          <View style={styles.row}>
             <Button buttonType={ButtonTypes.Back} setLoading={setLoading}/>
-            <Button buttonType={ButtonTypes.Power} setLoading={setLoading}/>
             <Button buttonType={ButtonTypes.SearchRoku} setLoading={setLoading} setRokuFound={setRokuFound}/>
+            <Button buttonType={ButtonTypes.Options} setLoading={setLoading}/>
           </View>
           <View style={styles.row}>
             <Button buttonType={ButtonTypes.Home} setLoading={setLoading}/>
