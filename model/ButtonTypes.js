@@ -82,6 +82,12 @@ const Back: ButtonFlowType = {
     onPress: () => RemokuService.keyPress('Back')
 };
 
+const SearchRoku: ButtonFlowType = {
+    name: 'SEARCH_ROKU',
+    image: require('../assets/searchRoku.png'),
+    onPress: RemokuService.search
+};
+
 export default {
     Power,
     Left,
@@ -94,5 +100,6 @@ export default {
     Mute,
     Home,
     Input,
-    Back
+    Back,
+    SearchRoku
 };

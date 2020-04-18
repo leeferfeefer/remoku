@@ -19,21 +19,28 @@ import Button from './components/Button';
 import ButtonTypes from './model/ButtonTypes';
 
 const App: () => React$Node = () => {
-  const [isLoading, setLoading] = useState(0);
+  const [isLoading, setLoading] = useState(false);
+  const [rokuFound, setRokuFound] = useState(false);
 
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <View style={styles.container}>
-          {!!isLoading &&
+          {isLoading &&
             <View style={styles.spinner}>
               <ActivityIndicator size="large" color="white"/>
             </View>
           }
+
+          <View style={[styles.banner, {backgroundColor: rokuFound ? 'green' : 'red'}]}>
+            <Text style={{textAlign: 'center'}}>{rokuFound ? 'Connected' : 'Not Connected'}</Text>
+          </View>
+
           <View style={[styles.header, styles.row]}>
             <Button buttonType={ButtonTypes.Back} setLoading={setLoading}/>
             <Button buttonType={ButtonTypes.Power} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.SearchRoku} setLoading={setLoading} setRokuFound={setRokuFound}/>
           </View>
           <View style={styles.row}>
             <Button buttonType={ButtonTypes.Home} setLoading={setLoading}/>
@@ -64,6 +71,9 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     justifyContent: 'space-around'
+  },
+  banner: {
+    height: 20
   },
   header: {
     paddingTop: 50,
