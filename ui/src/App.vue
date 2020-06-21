@@ -10,9 +10,9 @@
       <v-spacer></v-spacer>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <Roku/>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
