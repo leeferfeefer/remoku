@@ -101,11 +101,8 @@
 </template>
 
 <script>
-    import axios from "axios";
-    const instance = axios.create({
-        baseURL: 'http://localhost:5000/api/',
-        timeout: 12000
-    });
+    import RemokuService from "../service/remoku.service"
+
     let address;
     export default {
         name: 'Roku',
@@ -120,63 +117,50 @@
                 this.isConnected = true;
             },
             async powerButtonPressed() {
-                try {
-                    this.power = !this.power;
-                    await instance.post("keypress", {
-                        address,
-                        keypress: this.power ? "PowerOn" : "PowerOff"
-                    });
-                } catch (error) {
-                    console.log("Could not send keypress");
-                    console.error(error);
-                }    
+                this.power = !this.power;
+                await RemokuService.keyPress(address, this.power ? "PowerOn" : "PowerOff");
             },
             async backButtonPressed() {
-
+                await RemokuService.keyPress(address, "Back");
             },
             async searchButtonPressed() {
-                try {
-                    const searchResponse = await instance.get("search");
-                    for (let device of searchResponse.data) {
-                        this.devices.push(device.location);
-                    }            
-                } catch (error) {
-                    console.log("Could not find Roku TV");
-                    console.error(error);
-                }
+                const searchResponse = await RemokuService.searchDevice();
+                for (let device of searchResponse.data) {
+                    this.devices.push(device.location);
+                }    
             },
             async optionsButtonPressed() {
-
+                await RemokuService.keyPress(address, "Info");
             },
             async homeButtonPressed() {
-
+                await RemokuService.keyPress(address, "Home");
             },
             async upButtonPressed() {
-
+                await RemokuService.keyPress(address, "Up");
             },
             async inputButtonPressed() {
-
+                await RemokuService.keyPress(address, "InputHDMI1");
             },
             async leftButtonPressed() {
-
+                await RemokuService.keyPress(address, "Left");
             },
             async selectButtonPressed() {
-
+                await RemokuService.keyPress(address, "Select");
             },
             async rightButtonPressed() {
-
+                await RemokuService.keyPress(address, "Right");
             },
             async volumeDownButtonPressed() {
-
+                await RemokuService.keyPress(address, "VolumeDown");
             },
             async downButtonPressed() {
-
+                await RemokuService.keyPress(address, "Down");
             },
             async volumeUpButtonPressed() {
-
+                await RemokuService.keyPress(address, "VolumeUp");
             },
             async muteButtonPressed() {
-
+                await RemokuService.keyPress(address, "VolumeMute");
             }
         }
     }
