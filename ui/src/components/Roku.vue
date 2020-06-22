@@ -92,10 +92,16 @@
                 justify="center"
                 class="ma-4"
             >
-                <v-btn dark large color="grey lighten-1" class="ml-2 mr-2 mb-12" @click="muteButtonPressed">
+                <v-btn dark large color="grey lighten-1" class="ml-2 mr-2 mb-4" @click="muteButtonPressed">
                     <v-icon dark>fa-volume-off</v-icon>
                 </v-btn>        
             </v-row>
+            <v-progress-circular
+                v-if="isLoading"
+                class="mb-4"
+                indeterminate
+                color="primary"
+            ></v-progress-circular>
         </v-card>
   </v-container>
 </template>
@@ -109,7 +115,8 @@
         data: () => ({
             isConnected: false,
             devices: [],
-            power: false
+            power: false,
+            isLoading: false
         }),
         methods: {
             deviceSelected(selectedDevice) {
@@ -118,49 +125,77 @@
             },
             async powerButtonPressed() {
                 this.power = !this.power;
+                this.isLoading = true;
                 await RemokuService.keyPress(address, this.power ? "PowerOn" : "PowerOff");
+                this.isLoading = false;
             },
             async backButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "Back");
+                this.isLoading = false;
             },
             async searchButtonPressed() {
+                this.isLoading = true;
                 const searchResponse = await RemokuService.searchDevice();
+                this.isLoading = false;
                 for (let device of searchResponse.data) {
                     this.devices.push(device.location);
                 }    
             },
             async optionsButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "Info");
+                this.isLoading = false;
             },
             async homeButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "Home");
+                this.isLoading = false;
             },
             async upButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "Up");
+                this.isLoading = false;
             },
             async inputButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "InputHDMI1");
+                this.isLoading = false;
             },
             async leftButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "Left");
+                this.isLoading = false;
             },
             async selectButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "Select");
+                this.isLoading = false;
             },
             async rightButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "Right");
+                this.isLoading = false;
             },
             async volumeDownButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "VolumeDown");
+                this.isLoading = false;
             },
             async downButtonPressed() {
+                this.isLoading = true;                
                 await RemokuService.keyPress(address, "Down");
+                this.isLoading = false;
             },
             async volumeUpButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "VolumeUp");
+                this.isLoading = false;
             },
             async muteButtonPressed() {
+                this.isLoading = true;
                 await RemokuService.keyPress(address, "VolumeMute");
+                this.isLoading = false;
             }
         }
     }
