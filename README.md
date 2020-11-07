@@ -7,3 +7,7 @@ https://testdriven.io/blog/developing-a-single-page-app-with-flask-and-vuejs/
 
 Credits:
 I did not write the search.service.py file. It was copied from: https://gist.github.com/dankrause/6000248
+
+
+
+Heroku: https://stackabuse.com/deploying-a-flask-application-to-heroku/
