@@ -1,1 +1,1 @@
-web: gunicorn remoku-server:create_app
+web: gunicorn remoku-server:app
