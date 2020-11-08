@@ -72,7 +72,6 @@ const search = () => {
 
 
 
-
 export default {
     getApps,
     keyPress,
