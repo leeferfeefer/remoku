@@ -5,6 +5,10 @@ from services.search import discover
 import json
 from services.roku import sendKeyPress
 
+@bp.route('/')
+def index():
+    return "<h1>Welcome to remoku server!!</h1>"
+
 
 @bp.route('/search', methods=['GET'])
 @cross_origin()
