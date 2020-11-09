@@ -16,14 +16,15 @@ type Props = {
 };
 
 const Button = (props: Props) => {
-    const {buttonType, setLoading, setRokuFound} = props;
+    const {buttonType, setLoading, setRokuFound, refreshTVIDs} = props;
     return (
         <TouchableOpacity style={styles.buttonStyle} onPress={async () => {
             setLoading(true);
-            const response = await buttonType.onPress();
+            const response = await buttonType.onPress();        
             if (buttonType.name === 'SEARCH_ROKU') {
                 if (response === 'pass') {
                     setRokuFound(true);
+                    refreshTVIDs();
                 } else if (response === 'fail') {
                     setRokuFound(false);
                 }

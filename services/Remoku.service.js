@@ -1,12 +1,17 @@
 import axios from "axios";
 var Client = require('react-native-ssdp').Client, client = new Client();
 global.Buffer = global.Buffer || require('buffer').Buffer;
+import AsyncStorageService from './AsyncStorage.service';
 
 const instance = axios.create({
     timeout: 5000
 });
 
 let baseURL = '';
+
+const setBaseURL = (newBaseURL) => {
+    baseURL = newBaseURL;
+}
 
 const getApps = async () => {
     try {
@@ -44,23 +49,30 @@ const togglePower = async () => {
 const keyPress = async (key) => {
     try {
         const response = await instance.post(`${baseURL}/keypress/${key}`);
-    } catch(error) {
+    } catch(error) {    
         console.log(`Error sending keypress: ${error.message}`);
     }
 };
 
 const search = () => {
-    let found = false;
     const promise = new Promise((resolve, reject) => {
         const timeout = setTimeout(() => {
             resolve("fail");
         }, 20000);
         client.search('roku:ecp');
-        client.on('response', function (headers, statusCode, rinfo) {
+        client.on('response', async function (headers, statusCode, rinfo) {
             if (!!headers.ST && !!headers.LOCATION && !!headers['DEVICE-GROUP.ROKU.COM']) {
                 if (headers.ST === 'roku:ecp') {
                     baseURL = headers.LOCATION;
-                    found = true;
+                    console.log("baseURL", baseURL);
+                    const tvIDs = await AsyncStorageService.getData('@tv_ids');        
+                    if (!!!tvIDs) {
+                        await AsyncStorageService.storeData([baseURL], '@tv_ids');
+                    } else {
+                        if (!tvIDs.some(id => id === baseURL)) {                            
+                            await AsyncStorageService.storeData([...tvIDs, baseURL], '@tv_ids');
+                        }
+                    }                       
                     resolve("pass");
                     clearTimeout(timeout);
                 }
@@ -76,5 +88,6 @@ export default {
     getApps,
     keyPress,
     togglePower,
-    search
+    search, 
+    setBaseURL
 }

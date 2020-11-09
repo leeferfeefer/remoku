@@ -3,8 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android --variant release",
-    "ios": "react-native run-ios --simulator='iPhone 11 pro'",
+    "android-debug": "react-native run-android --variant debug",
+    "android-release": "react-native run-android --variant release",
+    "ios-debug": "react-native run-ios --simulator='iPhone X' --scheme 'remoku-debug' --configuration Debug",
+    "iod-release": "react-native run-ios --simulator='iPhone X' --scheme 'remoku-release' --configuration Release",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
@@ -15,6 +17,8 @@
     "pods": "cd ios && pod install && cd .."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.13.2",
+    "@react-native-picker/picker": "^1.9.2",
     "axios": "^0.19.2",
     "buffer": "^5.6.0",
     "react": "16.11.0",
