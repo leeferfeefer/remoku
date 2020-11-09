@@ -57,30 +57,45 @@ const App: () => React$Node = () => {
         <Text>Clear</Text>  
         </TouchableOpacity>
           <View style={[styles.header, styles.row]}>
-            <Button buttonType={ButtonTypes.Power} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Power} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
           </View>
           <View style={styles.row}>
-            <Button buttonType={ButtonTypes.Back} setLoading={setLoading}/>
-            <Button buttonType={ButtonTypes.SearchRoku} setLoading={setLoading} setRokuFound={setRokuFound} refreshTVIDs={getIDs}/>
-            <Button buttonType={ButtonTypes.Options} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Back} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
+            <Button buttonType={ButtonTypes.SearchRoku} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}
+              refreshTVIDs={getIDs}/>
+            <Button buttonType={ButtonTypes.Options} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
           </View>
           <View style={styles.row}>
-            <Button buttonType={ButtonTypes.Home} setLoading={setLoading}/>
-            <Button buttonType={ButtonTypes.Up} setLoading={setLoading}/>
-            <Button buttonType={ButtonTypes.Input} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Home} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
+            <Button buttonType={ButtonTypes.Up} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
+            <Button buttonType={ButtonTypes.Input} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
           </View>
           <View style={styles.row}>
-            <Button buttonType={ButtonTypes.Left} setLoading={setLoading}/>
-            <Button buttonType={ButtonTypes.Select} setLoading={setLoading}/>
-            <Button buttonType={ButtonTypes.Right} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Left} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
+            <Button buttonType={ButtonTypes.Select} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
+            <Button buttonType={ButtonTypes.Right} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
           </View>
           <View style={styles.row}>
-            <Button buttonType={ButtonTypes.VolumeDown} setLoading={setLoading}/>
-            <Button buttonType={ButtonTypes.Down} setLoading={setLoading}/>
-            <Button buttonType={ButtonTypes.VolumeUp} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.VolumeDown} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
+            <Button buttonType={ButtonTypes.Down} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
+            <Button buttonType={ButtonTypes.VolumeUp} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
           </View>
           <View style={styles.row}>
-            <Button buttonType={ButtonTypes.Mute} setLoading={setLoading}/>
+            <Button buttonType={ButtonTypes.Mute} setLoading={setLoading} 
+              setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
           </View>
           <Picker
               selectedValue={selectedTvID}

@@ -16,8 +16,10 @@ const setBaseURL = (newBaseURL) => {
 const getApps = async () => {
     try {
         const response = await instance.get(`${baseURL}/query/apps`);
+        return true;
     } catch(error) {
         console.log(`Error getting apps: ${error.message}`);
+        return false;
     }
 };
 
@@ -27,21 +29,29 @@ const togglePower = async () => {
         isOn = false;
         try {
             const response = await instance.post(`${baseURL}/keypress/PowerOff`);
+            return true;
         } catch(error) {
             console.log(`Error sending poweroff: ${error.message}`);
             try {
                 const response = await instance.post(`${baseURL}/keypress/PowerOn`);
-            } catch (error) {}
+                return true;
+            } catch (error) {
+                return false;
+            }   
         }
     } else {
         isOn = true;
         try {
             const response = await instance.post(`${baseURL}/keypress/PowerOn`);
+            return true;
         } catch(error) {
             console.log(`Error sending poweron: ${error.message}`);
             try {
                 const response = await instance.post(`${baseURL}/keypress/PowerOff`);
-            } catch (error) {}
+                return true;
+            } catch (error) {
+                return false;
+            }
         }
     }
 };
@@ -49,15 +59,17 @@ const togglePower = async () => {
 const keyPress = async (key) => {
     try {
         const response = await instance.post(`${baseURL}/keypress/${key}`);
+        return true;
     } catch(error) {    
         console.log(`Error sending keypress: ${error.message}`);
+        return false;
     }
 };
 
 const search = () => {
     const promise = new Promise((resolve, reject) => {
         const timeout = setTimeout(() => {
-            resolve("fail");
+            resolve(false);
         }, 20000);
         client.search('roku:ecp');
         client.on('response', async function (headers, statusCode, rinfo) {
@@ -73,7 +85,7 @@ const search = () => {
                             await AsyncStorageService.storeData([...tvIDs, baseURL], '@tv_ids');
                         }
                     }                       
-                    resolve("pass");
+                    resolve(true);
                     clearTimeout(timeout);
                 }
             }
