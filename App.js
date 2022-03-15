@@ -33,6 +33,7 @@ const App: () => React$Node = () => {
     tvIDs = tvIDs ?? [];
     setTvIDs(['Select a TV ID', ...tvIDs]);
   };
+  
   useEffect(() => {
     getIDs();
   }, []);
@@ -43,19 +44,16 @@ const App: () => React$Node = () => {
       <SafeAreaView>
         <View style={styles.container}>
           {isLoading &&
-            <View style={styles.spinner}>
+            <View style={styles.spinnerContainer}>
               <ActivityIndicator size="large" color="white"/>
             </View>
           }
-
           <View style={[styles.banner, {backgroundColor: rokuFound ? 'green' : 'red'}]}>
             <Text style={{textAlign: 'center'}}>{rokuFound ? 'Connected' : 'Not Connected'}</Text>
           </View>
-          <TouchableOpacity onPress={async () => {
-            await AsyncStorageService.clearAll();
-        }}>        
-        <Text>Clear</Text>  
-        </TouchableOpacity>
+          <TouchableOpacity onPress={AsyncStorageService.clearAll}>          
+            <Text>Clear</Text>  
+          </TouchableOpacity>
           <View style={[styles.header, styles.row]}>
             <Button buttonType={ButtonTypes.Power} setLoading={setLoading} 
               setRokuFound={(newValue) => newValue !== rokuFound && setRokuFound(newValue)}/>
@@ -120,7 +118,8 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    backgroundColor: 'gray',
   },
   banner: {
     height: 20
@@ -132,15 +131,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
-  spinner: {
+  spinnerContainer: {
     position: 'absolute',
     left: 0,
     right: 0,
-    top: 0,
+    top: 100,
     bottom: 0,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'gray'
+    // justifyContent: 'center',
   },
   picker: {
     height: 150
